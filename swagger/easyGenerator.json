@@ -1,0 +1,203 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "Easy Generator",
+      "version": "1.0.0"
+    },
+    "servers": [
+      {
+        "url": "http://localhost:5001"
+      }
+    ],
+    "components": {
+      "securitySchemes": {
+        "bearerAuth": {
+          "type": "http",
+          "scheme": "bearer"
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Auth"
+      },
+      {
+        "name": "User"
+      }
+    ],
+    "paths": {
+      "/api/auth/login": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Login",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "email": "raji.thavamuthu1196@gmail.com",
+                    "password": "Pass@1234",
+                    "deviceId": "23456"
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "Access-Control-Allow-Origin",
+              "in": "header",
+              "schema": {
+                "type": "string"
+              },
+              "example": "*"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/users/register": {
+        "post": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "Register",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "example": {
+                    "email": "raji.thavamuthu1196@gmail.com",
+                    "password": "Pass@1234",
+                    "firstName": "Raji",
+                    "lastName": "Thavamuthu"
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/auth/renewToken": {
+        "get": {
+          "tags": [
+            "Auth"
+          ],
+          "summary": "RenewToken",
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/users/isExist": {
+        "get": {
+          "tags": [
+            "User"
+          ],
+          "summary": "isExist",
+          "parameters": [
+            {
+              "name": "email",
+              "in": "query",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/users/{userId}": {
+        "delete": {
+          "tags": [
+            "User"
+          ],
+          "summary": "remove",
+          "security": [
+            {
+              "bearerAuth": []
+            }
+          ],
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      },
+      "/api/users/{Id}": {
+        "put": {
+          "tags": [
+            "User"
+          ],
+          "summary": "update",
+          "requestBody": {
+            "content": {}
+          },
+
+          "parameters": [
+            {
+              "name": "Id",
+              "in": "path",
+              "schema": {
+                "type": "string"
+              },
+              "required": true
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Successful response",
+              "content": {
+                "application/json": {}
+              }
+            }
+          }
+        }
+      }
+    }
+  }

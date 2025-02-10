@@ -1,0 +1,35 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "declaration": true,
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es2017",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "baseUrl": "./",
+    "incremental": true,
+    "skipLibCheck": true,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "strictBindCallApply": false,
+    "forceConsistentCasingInFileNames": false,
+    "noFallthroughCasesInSwitch": false,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "paths": {
+      "@schemas": ["src/config/database/schemas/index"],
+      "@guards": ["src/common/guards/index"],
+      "@modules/*": ["src/modules/*"],
+      "@messages/*": ["src/common/messages/*"],
+      "@pipes/*": ["src/common/pipes/*"],
+      "@services/*": ["src/common/services/*"],
+      "@typings/*": ["src/common/typings/*"],
+      "@decorators/*": ["src/common/decorators/*"],
+      "@dto/*": ["src/common/dto/*"],
+      "@utils/*": ["src/common/utils/*"]
+    }
+  }
+}
