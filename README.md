@@ -19,19 +19,20 @@ $ npm run start
 $ npm run start:dev
 
 # production mode
+$ npm run build
 $ npm run start:prod
 ```
+## Documentation
+```bash
+$ Open http://localhost:5001/api/ in browser for API documentation
+```
 
-## Test
+## Docker Image
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+$ docker build -t easy-gen .
 ```
+
+
+
 
