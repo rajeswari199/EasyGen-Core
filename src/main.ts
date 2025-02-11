@@ -1,6 +1,6 @@
 import { NestFactory, HttpAdapterHost } from '@nestjs/core';
 import fs from 'fs/promises';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import { ApiBearerAuth, DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { urlencoded, json } from 'express';
@@ -30,8 +30,20 @@ async function bootstrap() {
   app.setGlobalPrefix(configService.get(ConfigKey.BACKEND_PREFIX));
   app.enableVersioning();
   const documentFactory = await fs.readFile(join(process.cwd(), 'swagger/easyGenerator.json'), 'utf-8');
-
-  const document = JSON.parse(documentFactory.toString())
+  let document = JSON.parse(documentFactory.toString())
+  document = {
+    ...new DocumentBuilder().addBearerAuth({
+      type: 'http',
+      scheme: 'bearer',
+      bearerFormat: 'JWT',
+      in: 'header',
+      name: 'Authorization',
+      description: 'Enter your Bearer token',
+    }, 'access-token')
+      .addSecurityRequirements('bearer')
+      .build(), ...document
+  }
+  
   SwaggerModule.setup('api', app, document);
 
   app.enableCors({

@@ -22,7 +22,7 @@ $ npm run start:dev
 $ npm run build
 $ npm run start:prod
 ```
-## Documentation
+## API Documentation
 ```bash
 $ Open http://localhost:5001/api/ in browser for API documentation
 ```

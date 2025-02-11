@@ -30,6 +30,7 @@ import { LoginUserDto } from './dto/loginUser.dto';
 import { RenewTokenDto } from './dto/renewToken.dto';
 import { AuthService } from './auth.service';
 import { ConfigKey } from '../../config/configKeyMapping';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('auth')
 export class AuthController {
@@ -85,6 +86,7 @@ export class AuthController {
   }
 
   @Post('logout')
+  @ApiBearerAuth('access-token')
   @UseGuards(AuthGuard)
   @HttpCode(HttpStatus.OK)
   @UsePipes(new ValidationPipe({ whitelist: true }))

@@ -29,6 +29,7 @@ import {
   IsUserExistDto,
   VerifyUserParamDto
 } from './dto'
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('users')
 export class UsersController {
@@ -64,6 +65,7 @@ export class UsersController {
   }
 
   @Get('')
+  @ApiBearerAuth('access-token')
   @UseGuards(AuthGuard)
   async userDetails(@User() user): Promise<Response<UserInfo>> {
     const data = await this.usersService.getUserById(user._id);
@@ -72,6 +74,7 @@ export class UsersController {
   }
 
   @Delete('/:userId')
+  @ApiBearerAuth('access-token')
   @UseGuards(AuthGuard)
   async removeUser(
     @Param() { userId }: VerifyUserParamDto,
